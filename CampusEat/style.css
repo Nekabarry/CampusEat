@@ -30,6 +30,7 @@
 }
 html {
     font: size 16px;
+    overflow-x: hidden;
 }
 body{
     font-family: 'Lato', sans-serif;
@@ -425,4 +426,214 @@ section{
     width: 2rem;
     top: 55%;
     left: 0%; 
+}
+
+.restaurants-container{
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2rem;
+}
+.restaurants-container {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.restaurant {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: .1rem solid var(--border-color);
+}
+
+.discount {
+    position: absolute;
+    color: var(--light-text-color);
+    padding: .3rem .5rem;
+    background: var(--discount-color);
+    border-radius: .2rem;
+    left: 0;
+    top: 7.5%;
+    z-index: 2;
+}
+
+.restaurant-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 15rem; /* Adjust the height of the thumbnail container */
+    overflow: hidden;
+    border-radius: .5rem;
+}
+
+.restaurant-img {
+    width: 100%; /* Ensure the image takes up the full width of the container */
+    height: 100%; /* Ensure the image takes up the full height of the container */
+    object-fit: cover;
+    border-radius: .25rem;
+    transition: transform .5s var(--transition-curve);
+}
+
+.restaurant:hover .restaurant-img {
+    transform: scale(1.1);
+}
+.restaurant-body{
+    margin: 2rem 0 1rem;
+    position: relative;
+}
+.restaurant-name{
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font:--weight;
+    font-weight: 400;
+    margin: 1rem 0;
+}
+.menu{
+    width: 80%;
+    opacity: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 1rem 0;
+
+}
+.place{
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.rating{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: .4rem .6rem;
+    background: var(--secondary-color);
+    color: var(--light-text-color);
+    font-size: .9rem;
+    display: flex;
+    gap: .5rem;
+    border-radius: .2rem;
+}
+.restaurant:hover{
+    background: var(--card-hover-bg-color);
+}
+
+.leaf-layer{
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    z-index: 2;
+}
+.leaf-layer img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.leaf-layer.right{
+    right: -5%;
+    top: 25%;
+    transform:scale(0.9)rotate(30deg);
+}
+.leaf-layer.left{
+    left: -5%;
+    bottom: -5%;
+    transform:scale(1)rotate(0deg);
+}
+/* about section */
+
+#about-section{
+    padding-bottom: 0;
+}
+
+#about-section::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    background: var(--accent-color);
+    z-index:-1;
+
+}
+.about{
+    width: 30%;
+    margin-left: auto;
+    min-width: 250px;
+}
+.about-title{
+    font-size: 2rem;
+    text-transform: capitalize;
+    color: var(--secondary-text-color);
+}
+.about-info{
+    margin: 2rem 0 4rem;
+    line-height: 2rem;
+}
+.services{
+    background: var(--primary-color);
+    border-radius: .5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    box-shadow: 0 .5rem 1rem var(--box-shadow-color);
+}
+.service-title{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+}
+.service-img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: .2rem;
+}
+.service-name{
+    font-weight: 400;
+}
+.service-detail{
+    margin-top: 1rem;
+    line-height: 2rem;
+    opacity: .75;
+}
+.about-us-review-container{
+    position: absolute;
+    left: -10;
+    width: 40rem;
+    height: 40rem;
+}
+.about-us-review-container .circle{
+    background-color: transparent;
+    left: 20%;
+    transform: translate(-50%,-50%);
+}
+
+
+.about-us-review-container .circle::before,
+.about-us-review-container .circle::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:90%;
+    height: 90%;
+    border: .1rem solid var(--secondary-color) ;
+    border-radius: 100%;
+   
+}
+.about-us-review-container  .circle::after{
+    width: 110%;
+    height: 110%;
+}
+.pizza-pan-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform:scale(0.9);
+    left:-25%;
+    filter: drop-shadow(0 1rem 1rem var(--box-shadow-color));
 }
