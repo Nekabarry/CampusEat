@@ -447,6 +447,7 @@ section{
     padding: 1rem;
     border-radius: .5rem;
     border: .1rem solid var(--border-color);
+    cursor: pointer;
 }
 
 .discount {
@@ -784,24 +785,125 @@ section{
 }
 .leaf{
     position: absolute;
-    height: 40%;
+    height: 30%;
+    left: -25%;
 
 }
 .leafs.left{
-    bottom: 15%;
+    bottom: 5%;
     left: 15%;
     transform: rotate(20deg);
 }
 .leaf.right{
-    bottom:0;
-    right: 5%;
+    bottom:70%;
+    left: 20%;
     transform: rotate(-20deg);
 }
 .phone-mockup{
     position: absolute;
-    height: 100%;
-    left: 50%;
+    height: 50%;
+    left: 10%;
+    bottom: 70%;
     transform: translate(-50%)scale(1.1)rotate(5deg);
-    box-shadow: 0 2.5rem 6.25rem var(--phone-app-shadow);
-    border-radius: 2rem;
+    
+ 
+}
+
+
+/* map */
+
+#map {
+    height: 400px;
+    width: 80%;
+    margin: auto;
+    border-left: 8px solid #1b1b1b;
+  
+  
+    
+  }
+
+.map{
+    background-color: var(--alpha-secondary-color);
+    text-align: center;
+    padding: 20px ;
+    padding-bottom: 40px;
+}
+
+
+footer{
+   
+    background-color: #1b1b1b;
+    color: white;
+    padding: 1rem 2rem;
+
+}
+
+.topFooter{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+    padding: 1rem 0;
+    p{
+        font-size: 2rem;
+    }
+    img{
+        width: 40px ;
+        height: 40px;
+        margin-right: 20px;
+    }
+}
+
+.secFooter{
+    padding: 1rem 0;
+    p{
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+}
+
+.thirdFooter{
+
+    border-bottom: 2px solid white;
+
+    h2{
+        margin: 1rem 0;
+    }
+    p{
+        display: flex;
+        margin-bottom: 20px;
+        align-items: center;
+        align-content: center;
+
+        span{
+            font-size: 1.3rem;
+        }
+
+        img{
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    }
+
+    div{
+        display: flex;
+      
+        align-items: center;
+        margin-bottom: 20px;
+        img{
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+            background-color: white;
+            border-radius: 100%;
+            padding: 4px;
+        }
+    }
+
+}
+  
+
+.fourthFooter{
+    font-size: 1.1rem;
+    margin: 20px 0;
 }

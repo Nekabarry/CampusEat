@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Google front CDN--> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+         <!--font awesome cdn-->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+        <!--Style-->
+        <link rel="stylesheet" href="style.css">
+
+    <title>Sign Up / Sign In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EAF2F5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+             <!-- navbar -->
+             <nav class="navbar">
+                
+                <!--logo-->
+                <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+    
+                <!--Ul-->
+                <ul class="links-container">
+                    <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+                    <li class="link-items"><a href="#restaurant" class="links">Order</a></li>
+                    <li class="link-items"><a onclick="scrollResturants" href="index.html" class="links">Restaurants</a></li>
+                    <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+                    <li class="link-items"><a href="signup.html" class="links">SignUp/SignIn</a></li>
+                
+    
+                </ul>
+                <!--search box-->
+                <div class="nav-extras"> 
+                    <!--search box-->
+                    <div class ="search">
+                        <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+                        <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <!--cart btn-->
+                    <a href="#" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+    
+                </nav>
+
+<div class="container">
+    <h2>Sign Up</h2>
+    <form action="#">
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" pattern=".{8,}" title="Password must be at least 8 characters" required>
+        <input type="submit" value="Sign Up">
+    </form>
+    <p> <a href="signin.html">already have account</a> </p>
+</div>
+
+</body>
+</html>

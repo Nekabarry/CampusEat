@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Tracking</title>
+  <link rel="stylesheet" href="styles.css">
+
+
+          <!--Google front CDN--> 
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+      
+           <!--font awesome cdn-->
+          <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+      
+          <!--Style-->
+          <link rel="stylesheet" href="style.css">
+
+</head>
+
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.tracking {
+  max-width: 600px;
+  margin: 15rem auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.status {
+  flex: 1;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.status h3 {
+  margin-top: 0;
+}
+
+.out-for-delivery {
+  border-color: #007bff;
+}
+
+.in-transit {
+  border-color: #2b2b2b;
+}
+
+.delivered {
+  border-color: #575757;
+}
+
+</style>
+
+
+<body>
+ 
+                     <!-- navbar -->
+                     <nav class="navbar">
+                
+                      <!--logo-->
+                      <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+          
+                      <!--Ul-->
+                      <ul class="links-container">
+                          <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+                          <li class="link-items"><a href="#restaurant" class="links">Order</a></li>
+                          <li class="link-items"><a onclick="scrollResturants" href="index.html" class="links">Restaurants</a></li>
+                          <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+                          <li class="link-items"><a href="signup.html" class="links">SignUp/SignIn</a></li>
+                      
+          
+                      </ul>
+                      <!--search box-->
+                      <div class="nav-extras"> 
+                          <!--search box-->
+                          <div class ="search">
+                              <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+                              <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                          </div>
+                          <!--cart btn-->
+                          <a href="#" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                      </div>
+          
+                      </nav>
+ 
+  <div class="tracking">
+    <h2>Track Your Item</h2>
+    <div class="item">
+      <div class="status out-for-delivery">
+        <h3>Out for Delivery</h3>
+        <p>Your item is currently out for delivery.</p>
+      </div>
+      <div class="status in-transit">
+        <h3>In Transit</h3>
+        <p>Your item is on its way to the delivery location.</p>
+      </div>
+      <div class="status delivered">
+        <h3>Delivered</h3>
+        <p>Your item has been successfully delivered.</p>
+      </div>
+      <!-- Add more statuses as needed -->
+    </div>
+  </div>
+</body>
+</html>

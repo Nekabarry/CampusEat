@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+
+            <!--Google front CDN--> 
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+            <!--font awesome cdn-->
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+            <!--Style-->
+            <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 5rem 10rem;
+        }
+
+        .cart-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .cart-item h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remove {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .buy {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+            <!-- navbar -->
+            <nav class="navbar">
+                
+                <!--logo-->
+                <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+    
+                <!--Ul-->
+                <ul class="links-container">
+                    <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+                    <li class="link-items"><a href="#restaurant" class="links">Order</a></li>
+                    <li class="link-items"><a onclick="scrollResturants" href="index.html" class="links">Restaurants</a></li>
+                    <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+                    <li class="link-items"><a href="signup.html" class="links">SignUp/SignIn</a></li>
+                
+    
+                </ul>
+                <!--search box-->
+                <div class="nav-extras"> 
+                    <!--search box-->
+                    <div class ="search">
+                        <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+                        <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <!--cart btn-->
+                    <a href="#" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+    
+                </nav>
+    
+
+
+<div id="cart"></div>
+
+<div class="total" id="total"> </div>
+<button style="background-color: #f4f4f4; padding: 7px 20px;"> <a href="Track.html" style="color: black;"> Track </a> </button>
+<script>
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const cartItems = params.getAll('item');
+        const cart = document.getElementById('cart');
+
+        let totalAmount = 0;
+    
+        cartItems.forEach(item => {
+            const itemDetails = item.split('-');
+            const itemName = itemDetails[0];
+            let itemRate = parseInt(itemDetails[1]);
+            let Items = 1;
+            const div = document.createElement('div');
+            div.classList.add('cart-item');
+
+            const divContent = document.createElement('div');
+            divContent.classList.add('cart-item-content');
+
+            const h3 = document.createElement('h3');
+            h3.textContent = itemName;
+            
+
+            const pRate = document.createElement('p');
+            pRate.textContent = `Rate: ${itemRate}`;
+
+            const noItem = document.createElement('p');
+            noItem.textContent = `Cart : ${Items} ${itemName}`;
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+
+            const decreaseButton = document.createElement('button');
+            decreaseButton.classList.add('button', 'decrease');
+            decreaseButton.textContent = '-';
+            decreaseButton.addEventListener('click', function() {
+                Items > 0 ? Items-- : Items;                
+                noItem.textContent = `Cart : ${Items} ${itemName}`;
+                pRate.textContent = `Rate: ${itemRate*Items}`;
+                totalAmount = itemRate;
+                updateTotal();
+            });
+
+            const increaseButton = document.createElement('button');
+            increaseButton.classList.add('button', 'increase');
+            increaseButton.textContent = '+';
+            increaseButton.addEventListener('click', function() {
+                Items++;
+               
+                noItem.textContent = `Cart : ${Items} ${itemName}`;
+                pRate.textContent = `Rate: ${itemRate*Items}`;
+                totalAmount = itemRate;
+                updateTotal();
+            });
+
+            buttonContainer.appendChild(decreaseButton);
+            buttonContainer.appendChild(increaseButton);
+
+            divContent.appendChild(h3);
+            divContent.appendChild(pRate);
+            divContent.appendChild(noItem);
+            divContent.appendChild(buttonContainer);
+
+            div.appendChild(divContent);
+            
+            cart.appendChild(div);
+
+            totalAmount = itemRate;
+        });
+
+        const totalElement = document.getElementById('total');
+        
+
+        const buyButton = document.createElement('button');
+        buyButton.classList.add('button', 'buy');
+        buyButton.textContent = 'Buy';
+        buyButton.addEventListener('click', function() {
+            alert(`your order had been placed`);
+        });
+
+        totalElement.insertAdjacentElement('afterend', buyButton);
+
+        function updateTotal() {
+            totalAmount = 0;
+            cartItems.forEach(item => {
+                const itemDetails = item.split('-');
+                const itemRate = parseInt(itemDetails[1]);
+                totalAmount = itemRate;
+            });
+            
+        }
+    };
+</script>
+</body>
+</html>
