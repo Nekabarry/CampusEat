@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Login</title>
+     <!--Google front CDN--> 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+ 
+      <!--font awesome cdn-->
+     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color:#fff;
+            margin: 0;
+            padding: 0;
+            
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 1rem auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            box-sizing: border-box;
+            height: 500px;
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .extra {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .extra a {
+            color: #007bff;
+        }
+        .extra a:hover {
+            text-decoration: underline;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+ 
+   <!-- navbar -->
+   <nav class="navbar">
+                
+    <!--logo-->
+    <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+
+    <!--Ul-->
+    <ul class="links-container">
+        <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+        <li class="link-items"><a href="order.html" class="links">Order</a></li>
+        <li class="link-items"><a href="#restaurant"  class="links">Restaurants</a></li>
+        <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+        <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+    
+
+    </ul>
+    <!--search box-->
+    <div class="nav-extras"> 
+        <!--search box-->
+        <div class ="search">
+            <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+            <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <!--cart btn-->
+        <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+    </nav>
+
+
+    <div class="container">
+        <h2>Sign In</h2>
+        <form action="login.php" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Please enter your name" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="extra mt-3">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </form>
+        <p class="mt-3">Don't have an account? <a href="sign.html">Sign up here</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+
+            <!--Google front CDN--> 
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+            <!--font awesome cdn-->
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+            <!--Style-->
+            <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 5rem 10rem;
+        }
+
+        .cart-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .cart-item h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remove {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .buy {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        
+        }
+        
+    </style>
+</head>
+<body>
+
+            <!-- navbar -->
+            <nav class="navbar">
+                
+                <!--logo-->
+                <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+    
+                <!--Ul-->
+                <ul class="links-container">
+                    <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+                    <li class="link-items"><a href="#restaurant" class="links">Order</a></li>
+                    <li class="link-items"><a href="#restaurant" class="links">Restaurants</a></li>
+                    <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+                    <li class="link-items"><a href="signup.html" class="links">SignIn</a></li>
+                
+    
+                </ul>
+                <!--search box-->
+                <div class="nav-extras"> 
+                    <!--search box-->
+                    <div class ="search">
+                        <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+                        <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <!--cart btn-->
+                    <a href="#" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+    
+                </nav>
+    
+
+
+<div id="cart"></div>
+
+<div class="total" id="total"> </div>
+<button style="background-color: #218838; color: white;  border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"> <a href="Track.html" style="border: none; color: white; cursor: pointer;"> Track </a> </button>
+<button onclick="confirmOrder()" style="background-color: #218838; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Confirm Order</button>
+
+<script>
+    window.onload = function() {
+        // Retrieve the cart items from local storage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartContainer = document.getElementById('cart');
+        const totalElement = document.getElementById('total');
+        let totalAmount = 0;
+
+        // Iterate over the cart items and create elements for each
+        cart.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.classList.add('cart-item');
+
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.itemName;
+
+            const divContent = document.createElement('div');
+
+            const h3 = document.createElement('h3');
+            h3.textContent = item.itemName;
+
+            const pRate = document.createElement('p');
+            pRate.textContent = `Rate: ₺${item.itemRate}`;
+
+            const quantityControls = document.createElement('div');
+            quantityControls.classList.add('quantity-controls');
+
+            const quantity = document.createElement('span');
+            quantity.textContent = item.quantity || 1;
+
+            const increaseButton = document.createElement('button');
+            increaseButton.textContent = '+';
+            increaseButton.onclick = () => {
+                item.quantity = (item.quantity || 1) + 1;
+                quantity.textContent = item.quantity;
+                updateTotal();
+            };
+
+            const decreaseButton = document.createElement('button');
+            decreaseButton.textContent = '-';
+            decreaseButton.onclick = () => {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                    quantity.textContent = item.quantity;
+                    updateTotal();
+                }
+            };
+
+            quantityControls.appendChild(decreaseButton);
+            quantityControls.appendChild(quantity);
+            quantityControls.appendChild(increaseButton);
+
+            divContent.appendChild(h3);
+            divContent.appendChild(pRate);
+            divContent.appendChild(quantityControls);
+
+            div.appendChild(img);
+            div.appendChild(divContent);
+
+            cartContainer.appendChild(div);
+
+            totalAmount += item.itemRate * (item.quantity || 1);
+        });
+
+        // Update the total amount
+        totalElement.textContent = `Total: ₺${totalAmount.toFixed(2)}`;
+
+        function updateTotal() {
+            totalAmount = 0;
+            cart.forEach(item => {
+                totalAmount += item.itemRate * (item.quantity || 1);
+            });
+            totalElement.textContent = `Total:  ₺${totalAmount.toFixed(2)}`;
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    };
+
+    function confirmOrder() {
+        alert("Order confirmed! Total amount:  ₺" + document.getElementById('total').textContent.split('₺')[1]);
+        localStorage.removeItem('cart');
+        window.location.href = 'payment.html';
+        //window.location.reload();
+    }
+</script>
+</body>
+</html>

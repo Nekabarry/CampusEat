@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Details</title>
+
+            <!--Google front CDN--> 
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        
+             <!--font awesome cdn-->
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        
+            <!--Style-->
+            <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 100px 100px;
+            height: 100vh;
+        }
+
+        .restaurant-details {
+  
+
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .restaurant-details img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid beige;;
+        }
+
+        .restaurant-details h3 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .restaurant-details p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .restaurant-details .rating {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            color: #ffcc00;
+        }
+
+        .rating i {
+            margin-left: 5px;
+        }
+
+        .cardDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;  /* Distribute items evenly */
+    margin: 0 -15px; /* Negative margin to counteract padding */
+}
+
+.card {
+    width: calc(22% - 30px); /* Adjust width for 4 cards in one row */
+    margin: 15px; /* Add spacing between cards */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-content {
+            padding: 10px;
+        }
+
+        .card-content h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card-content p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .buy {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+           <!-- navbar -->
+           <nav class="navbar">
+                
+            <!--logo-->
+            <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+
+            <!--Ul-->
+            <ul class="links-container">
+                <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+                <li class="link-items"><a href="order.html" class="links">Order</a></li>
+                <li class="link-items"><a href="#restaurant"  class="links">Restaurants</a></li>
+                <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+                <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+            
+
+            </ul>
+            <!--search box-->
+            <div class="nav-extras">
+                <div class="search">
+                    <input type="text" class="search-box" id="search-box" placeholder="Search Restaurants, Cuisine...">
+                    <button class="search-btn" onclick="searchFunction()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <!-- Cart Button -->
+                <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+
+            </nav>
+
+
+<div class="restaurant-details">
+    <h3 id="details-name"></h3>
+    <img id="details-img" src="" alt="">
+    <p id="details-menu"></p>
+    <p id="details-place"></p>
+    <div class="rating" id="details-rating"></div>
+</div>
+
+
+<div class="cardDiv">
+
+
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card" id="coffee1">
+        <img src="./Img/cup-coffee-with-heart-drawn-foam.jpg" alt="Coffee 1">
+        <div class="card-content">
+            <h3>Coffee</h3>
+            <p>Description of Coffee</p>
+            <p>Rate: 100</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Add to Cart</button>
+                <button class="button buy" onclick="buy('Coffee', 100 , './Img/cup-coffee-with-heart-drawn-foam.jpg'  )">Buy</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" id="burger1">
+        <img src="./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" alt="Burger 1">
+        <div class="card-content">
+            <h3>Burger</h3>
+            <p>Description of Burger</p>
+            <p>Rate: 500</p>
+            <div class="button-container">
+                <button class="button add-to-cart" onclick="addToCart('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' ) ">Add to Cart</button>
+                <button class="button buy" onclick="buy('Burger', 500 , './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' )">Buy</button>
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>
+
+<script>
+    // Extract the restaurant details from the query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const image = urlParams.get('image');
+    const menu = urlParams.get('menu');
+    const place = urlParams.get('place');
+    const rating = urlParams.get('rating');
+
+    // Update the content of the restaurant details section
+    document.getElementById('details-name').innerText = name;
+    document.getElementById('details-img').src = image;
+    document.getElementById('details-menu').innerText = 'Menu: ' + menu;
+    document.getElementById('details-place').innerText = 'Location: ' + place;
+    document.getElementById('details-rating').innerHTML = 'Rating: ' + rating + '<i class="fa-solid fa-star"></i>';
+
+
+    function addToCart(itemName, itemRate, src) {
+    // Get the existing cart items from local storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Create a new cart item
+    const newItem = { itemName, itemRate, src };
+
+    // Add the new item to the cart
+    cart.push(newItem);
+
+    // Save the updated cart back to local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Display a notification
+    alert(`${itemName} has been added to your cart!`);
+}
+
+
+function updateCartUI(cart) {
+    let ordersElement = document.getElementById("orders");
+    let totalElement = document.getElementById("total");
+    ordersElement.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+        let itemElement = document.createElement("div");
+        itemElement.textContent = `${item.itemName} - $${item.itemRate}`;
+        ordersElement.appendChild(itemElement);
+        total += item.itemRate;
+    });
+    totalElement.textContent = `Total: $${total.toFixed(2)}`;
+}
+
+        // Buy Function (dummy function)
+        function buy(itemName, itemRate , src) {
+        const url = `cart.html?item=${itemName}-${itemRate}-${src}`;
+       
+        window.location.href = 'payement.html';
+        // Alternatively, you can handle the buying process directly in JavaScript without redirecting
+        // For example: display a modal with a confirmation message and total amount
+    }
+        // Alternatively, you can handle the buying process directly in JavaScript without redirecting
+        // For example: display a modal with a confirmation message and total amount
+    
+        // JavaScript for Search Functionality
+        function searchFunction() {
+    const searchInput = document.getElementById('search-box').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    const cardArray = Array.from(cards);
+
+    console.log(`Search input: ${searchInput}`);
+    console.log(`Number of cards: ${cards.length}`);
+
+    // Filter cards based on search input
+    const filteredCards = cardArray.filter(card => {
+        const title = card.querySelector('h3') ? card.querySelector('h3').innerText.toLowerCase() : '';
+        const description = card.querySelector('p') ? card.querySelector('p').innerText.toLowerCase() : '';
+
+        console.log(`Card title: ${title}, Card description: ${description}`);
+        return title.includes(searchInput) || description.includes(searchInput);
+    });
+
+    console.log(`Number of filtered cards: ${filteredCards.length}`);
+
+    // Sort filtered cards alphabetically by title
+    filteredCards.sort((a, b) => {
+        const titleA = a.querySelector('h3') ? a.querySelector('h3').innerText.toLowerCase() : '';
+        const titleB = b.querySelector('h3') ? b.querySelector('h3').innerText.toLowerCase() : '';
+        return titleA.localeCompare(titleB);
+    });
+
+    // Hide all cards
+    cards.forEach(card => {
+        card.style.display = 'none';
+    });
+
+    // Display filtered and sorted cards
+    filteredCards.forEach(card => {
+        card.style.display = 'block';
+    });
+}
+
+// Event listener to trigger search function on input
+document.getElementById('search-box').addEventListener('input', searchFunction);
+
+
+</script>
+
+</body>
+</html>

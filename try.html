@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Details</title>
+
+    <!-- Google Fonts CDN --> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 100px 100px;
+            height: 100vh;
+        }
+
+        .restaurant-details {
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .restaurant-details img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid beige;
+        }
+
+        .restaurant-details h3 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .restaurant-details p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .restaurant-details .rating {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            color: #ffcc00;
+        }
+
+        .rating i {
+            margin-left: 5px;
+        }
+
+        .cardDiv {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 -15px;
+        }
+
+        .card {
+            width: calc(22% - 30px);
+            margin: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-content {
+            padding: 10px;
+        }
+
+        .card-content h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card-content p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .buy {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Logo -->
+        <a href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+        <!-- Ul -->
+        <ul class="links-container">
+            <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+            <li class="link-items"><a href="order.html" class="links">Order</a></li>
+            <li class="link-items"><a href="#restaurant" class="links">Restaurants</a></li>
+            <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+            <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+        </ul>
+        <!-- Search box -->
+        <div class="nav-extras">
+            <div class="search">
+                <input type="text" class="search-box" id="search-box" placeholder="Search Restaurants, Cuisine...">
+                <button class="search-btn" onclick="searchFunction()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <!-- Cart Button -->
+            <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </nav>
+
+    <!-- Restaurant Details -->
+    <div class="restaurant-details">
+        <h3 id="details-name">Select a Restaurant</h3>
+        <img id="details-img" src="" alt="">
+        <p id="details-menu"></p>
+        <p id="details-place"></p>
+        <div class="rating" id="details-rating"></div>
+    </div>
+
+    <!-- Restaurant Selector -->
+    <select id="restaurant-select" onchange="updateProducts()">
+        <option value="restaurant1">Restaurant 1</option>
+        <option value="restaurant2">Restaurant 2</option>
+        <option value="restaurant3">Restaurant 3</option>
+    </select>
+
+    <!-- Products -->
+    <div class="cardDiv" id="products">
+        <!-- Products will be dynamically inserted here -->
+    </div>
+
+    <script>
+        const restaurantData = {
+            "restaurant1": [
+                { name: "Coffee", description: "Description of Coffee", rate: 100, img: "./Img/cup-coffee-with-heart-drawn-foam.jpg" },
+                { name: "Burger", description: "Description of Burger", rate: 500, img: "./Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg" },
+                { name: "Coffee", description: "Description of Coffee", rate: 100, img: "./Img/cup-coffee-with-heart-drawn-foam.jpg" },
+
+            ],
+            "restaurant2": [
+                { name: "Pizza", description: "Description of Pizza", rate: 800, img: "./Img/pizza.jpg" },
+                { name: "Pasta", description: "Description of Pasta", rate: 600, img: "./Img/pasta.jpg" }
+            ],
+            "restaurant3": [
+                { name: "Sushi", description: "Description of Sushi", rate: 1200, img: "./Img/sushi.jpg" },
+                { name: "Ramen", description: "Description of Ramen", rate: 700, img: "./Img/ramen.jpg" }
+            ]
+        };
+
+        function updateProducts() {
+            const selectedRestaurant = document.getElementById("restaurant-select").value;
+            const products = restaurantData[selectedRestaurant];
+
+            const productsContainer = document.getElementById("products");
+            productsContainer.innerHTML = "";
+
+            products.forEach(product => {
+                const productCard = `
+                    <div class="card">
+                        <img src="${product.img}" alt="${product.name}">
+                        <div class="card-content">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <p>Rate: ${product.rate}</p>
+                            <div class="button-container">
+                                <button class="button add-to-cart" onclick="addToCart('${product.name}', ${product.rate}, '${product.img}')">Add to Cart</button>
+                                <button class="button buy" onclick="buy('${product.name}', ${product.rate}, '${product.img}')">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productsContainer.innerHTML += productCard;
+            });
+        }
+
+        function addToCart(name, rate, img) {
+            console.log(`Added ${name} to cart for ${rate}`);
+        }
+
+        function buy(name, rate, img) {
+            console.log(`Bought ${name} for ${rate}`);
+        }
+
+        // Initialize products for the first restaurant
+        window.onload = () => {
+            updateProducts();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <!--Google front CDN--> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+     <!--font awesome cdn-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+          
+
+            margin: 0;
+  padding: 0;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 1rem auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px;
+            box-sizing: border-box;
+            height: 500px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: calc(100% - 40px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .form-group img {
+            width: 30px;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+       <!--Style-->
+       <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+            <!-- navbar -->
+            <nav class="navbar">
+                
+                <!--logo-->
+                <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+    
+                <!--Ul-->
+                <ul class="links-container">
+                    <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+                    <li class="link-items"><a href="order.html" class="links">Order</a></li>
+                    <li class="link-items"><a  href="#restaurant"  class="links">Restaurants</a></li>
+                    <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+                    <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+                
+    
+                </ul>
+                <!--search box-->
+                <div class="nav-extras"> 
+                    <!--search box-->
+                    <div class ="search">
+                        <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+                        <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <!--cart btn-->
+                    <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+    
+                </nav>
+    
+
+
+<div id="cart"></div>
+    <div class="form-container">
+        <h2>Payment Mode</h2>
+        <form id="paymentForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="paymentMode">Select Payment Mode:</label>
+                <select id="paymentMode" name="paymentMode" required>
+                    <option value="" disabled selected>Select payment mode</option>
+                    <option value="visa">Visa Card</option>
+                    <option value="mastercard">MasterCard</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cash">Cash Payment</option>
+                </select>
+            </div>
+
+            <div id="cardDetails" class="hidden">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="surname">
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">
+                        <img src="./Img/visa.png" alt="Visa Logo" id="visaLogo" class="hidden">
+                        <img src="./Img/master.jpg" alt="MasterCard Logo" id="mastercardLogo" class="hidden">
+                        Card Number:
+                    </label>
+                    <input type="text" id="cardNumber" name="cardNumber" pattern="\d{16}" title="16 digits required" maxlength="16">
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="month" id="expiryDate" name="expiryDate">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" pattern="\d{3}" title="3 digits required" maxlength="3">
+                </div>
+            </div>
+
+            <div id="paypalDetails" class="hidden">
+                <div class="form-group">
+                    <label for="paypalEmail">
+                        <img src="./Img/paypal.PNG" alt="PayPal Logo">
+                        PayPal Email:
+                    </label>
+                    <input type="email" id="paypalEmail" name="paypalEmail">
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Submit Payment</button>
+        </form>
+    </div>
+
+    <script>
+        const paymentMode = document.getElementById('paymentMode');
+        const cardDetails = document.getElementById('cardDetails');
+        const paypalDetails = document.getElementById('paypalDetails');
+        const visaLogo = document.getElementById('visaLogo');
+        const mastercardLogo = document.getElementById('mastercardLogo');
+
+        paymentMode.addEventListener('change', function() {
+            cardDetails.classList.add('hidden');
+            paypalDetails.classList.add('hidden');
+            visaLogo.classList.add('hidden');
+            mastercardLogo.classList.add('hidden');
+
+            if (this.value === 'visa') {
+                cardDetails.classList.remove('hidden');
+                visaLogo.classList.remove('hidden');
+            } else if (this.value === 'mastercard') {
+                cardDetails.classList.remove('hidden');
+                mastercardLogo.classList.remove('hidden');
+            } else if (this.value === 'paypal') {
+                paypalDetails.classList.remove('hidden');
+            }
+        });
+
+        function submitForm(event) {
+            event.preventDefault();
+            alert('Thank you for your payment');
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

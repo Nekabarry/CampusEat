@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+ 
+      <!--font awesome cdn-->
+     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="stylesheet" href="style.css">
+    <style>
+      body{
+        background: url(background.PNG);
+        margin: 0;
+            padding: 0;
+      }
+      div.signup{
+        width: 360px;
+        height: 800px;
+        background-color:ghostwhite;
+        margin: auto;
+        border-radius: 3px;
+
+
+      }
+     h1{
+        text-align: center;
+
+     }
+     h4{
+        text-align: center;
+        padding-top: 20px;
+     }
+     form{
+        width: 300px;
+        margin-left: 20px;
+     }
+     form label{
+        display: flex;
+        margin-top: 15px;
+        font-size: 15px;
+     }
+     form input{
+        width: 100%;
+        padding: 7px;
+        border: none;
+        border: 1px solid gray;
+        border-radius: 6px;
+        outline: none;
+
+     }
+     input[type="submit"]{
+        width: 320px;
+        height: 35px;
+        margin-top: 20px;
+        border: none;
+        background-color:#218838;
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+     }
+     input[type="submit"]:hover{
+        color:white ;
+        background: rgb(13,211,247);
+     }
+     p{
+        text-align: center;
+        padding-top: 20px;
+        font-size: 15px;
+     }
+    </style>
+</head>
+<body>
+   
+   <!-- navbar -->
+   <nav class="navbar">
+                
+      <!--logo-->
+      <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+  
+      <!--Ul-->
+      <ul class="links-container">
+          <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+          <li class="link-items"><a href="order.html" class="links">Order</a></li>
+          <li class="link-items"><a onclick="scrollResturants" href="index.html" class="links">Restaurants</a></li>
+          <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+          <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+      
+  
+      </ul>
+      <!--search box-->
+      <div class="nav-extras"> 
+          <!--search box-->
+          <div class ="search">
+              <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+              <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <!--cart btn-->
+          <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+      </div>
+  
+      </nav>
+  
+    <div class="signup">
+        <h4> Please fill the following:</h4>
+
+        <form>
+          <label>username</label>
+          <input type="text" name="" required>
+          <label>Address</label>
+          <input type="text" name="" required>
+          <label>Email</label>
+          <input type="text" name="" required>
+          <label>Password</label>
+          <input type="Password" name="" required>
+          <input type="submit" name="" value="Submit">
+
+        </form>
+
+          <p> By clicking the sign up button you agree to our
+          <a href=""> Terms and conditions </a> and <a href="#">policy privacy</a>
+        </p>
+
+    </div>
+</body>
+</html>

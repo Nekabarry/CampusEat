@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+     <!--font awesome cdn-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+    
+    background-image: url("./Img/reserve.avif") ;
+    margin: 0;
+  padding: 0;
+        }
+
+.form-container {
+    max-width: 400px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 1rem auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            box-sizing: border-box;
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+    </style>
+     <!--Google front CDN--> 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+ 
+      <!--font awesome cdn-->
+     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+     <!-- navbar -->
+   <nav class="navbar">
+                
+    <!--logo-->
+    <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+
+    <!--Ul-->
+    <ul class="links-container">
+        <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+        <li class="link-items"><a href="order.html" class="links">Order</a></li>
+        <li class="link-items"><a href="#restaurant" class="links">Restaurants</a></li>
+        <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+        <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+    
+
+    </ul>
+    <!--search box-->
+    <div class="nav-extras"> 
+        <!--search box-->
+        <div class ="search">
+            <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+            <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <!--cart btn-->
+        <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+    </nav>
+
+
+    <div class="form-container">
+        <h2>Make a Reservation</h2>
+        <form id="reservationForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="restaurant">Restaurant:</label>
+                <select id="restaurant" name="restaurant" required>
+                    <option value="" disabled selected>Select a restaurant</option>
+                    <option value="Restaurant 1">AFRICAN GOLD</option>
+                    <option value="Restaurant 2">BITS AND BITES</option>
+                    <option value="Restaurant 3">LAKE VIEW</option>
+                    <option value="Restaurant 4">GUSTO PIZZERIA</option>
+                    <option value="Restaurant 5">WAY CUP COFFEE</option>
+                    <option value="Restaurant 6">BREAK POINT</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <div class="form-group">
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" name="guests" required>
+            </div>
+            <div class="form-group">
+                <label for="special-requests">Special Requests:</label>
+                <textarea id="special-requests" name="special-requests"></textarea>
+            </div>
+            <button type="submit" class="btn">Submit Reservation</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            // Send a message to the parent window
+            parent.postMessage("formSubmitted", "*");
+        }
+    </script>
+</body>
+</html>

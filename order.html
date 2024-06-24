@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+     <!--Google front CDN--> 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+ 
+      <!--font awesome cdn-->
+     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ 
+     <!--Style-->
+     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .order-form, .previous-orders {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-form label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .order-form input, .order-form textarea, .order-form select {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .order-form button {
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .order-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: -15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .previous-orders table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .previous-orders table, .previous-orders th, .previous-orders td {
+            border: 1px solid #ddd;
+        }
+
+        .previous-orders th, .previous-orders td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .previous-orders th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .order-form, .previous-orders {
+                width: 48%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+     <!-- navbar -->
+   <nav class="navbar">
+                
+    <!--logo-->
+    <a href="index.html"> <img src="img/logo.png"class="logo" alt=""> </a> 
+
+    <!--Ul-->
+    <ul class="links-container">
+        <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+        <li class="link-items"><a href="order.html" class="links">Order</a></li>
+        <li class="link-items"><a href="#restaurant"  class="links">Restaurants</a></li>
+        <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+        <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+    
+
+    </ul>
+    <!--search box-->
+    <div class="nav-extras"> 
+        <!--search box-->
+        <div class ="search">
+            <input  type="text"class="search-box"placeholder="Search Restaurants,Cuisine....">
+            <button  class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <!--cart btn-->
+        <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+    </nav>
+
+
+
+    <div class="container">
+        <!-- New Order Form -->
+        <div class="section order-form">
+            <h2>Place a New Order</h2>
+            <form id="orderForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="nameError">Name is required.</div>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="emailError">Valid email is required.</div>
+
+                <label for="address">Address</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+                <div class="error-message" id="addressError">Address is required.</div>
+
+                <label for="item">Item</label>
+                <input type="text" id="item" name="item" required>
+                <div class="error-message" id="itemError">Item is required.</div>
+
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" required>
+                <div class="error-message" id="quantityError">Quantity is required and must be a positive number.</div>
+
+                <label for="payment">Payment Method</label>
+                <select id="payment" name="payment" required>
+                    <option value="">Select a payment method</option>
+                    <option value="Master-card">Master Card</option>
+                    <option value="Visa-card">Visa Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cash-on-delivery">Cash on Delivery</option>
+                </select>
+                <div class="error-message" id="paymentError">Payment method is required.</div>
+
+                <button type="submit"><a href="payement.html"> place Order</a></button>
+            </form>
+        </div>
+
+        <!-- Previous Orders -->
+        <div class="section previous-orders">
+            <h2>Previous Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Name</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>Widget A</td>
+                        <td>2</td>
+                        <td>Delivered</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>Widget B</td>
+                        <td>1</td>
+                        <td>Processing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById('name').value;
+            const nameError = document.getElementById('nameError');
+            if (name.trim() === '') {
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Address validation
+            const address = document.getElementById('address').value;
+            const addressError = document.getElementById('addressError');
+            if (address.trim() === '') {
+                addressError.style.display = 'block';
+                isValid = false;
+            } else {
+                addressError.style.display = 'none';
+            }
+
+            // Item validation
+            const item = document.getElementById('item').value;
+            const itemError = document.getElementById('itemError');
+            if (item.trim() === '') {
+                itemError.style.display = 'block';
+                isValid = false;
+            } else {
+                itemError.style.display = 'none';
+            }
+
+            // Quantity validation
+            const quantity = document.getElementById('quantity').value;
+            const quantityError = document.getElementById('quantityError');
+            if (quantity <= 0 || quantity.trim() === '') {
+                quantityError.style.display = 'block';
+                isValid = false;
+            } else {
+                quantityError.style.display = 'none';
+            }
+
+            // Payment method validation
+            const payment = document.getElementById('payment').value;
+            const paymentError = document.getElementById('paymentError');
+            if (payment === '') {
+                paymentError.style.display = 'block';
+                isValid = false;
+            } else {
+                paymentError.style.display = 'none';
+            }
+
+            // If form is valid, submit it
+            if (isValid) {
+                alert('Order placed successfully!');
+                document.getElementById('orderForm').reset();
+            }
+        });
+    </script>
+
+</body>
+</html>

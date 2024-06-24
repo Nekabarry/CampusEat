@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Details</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Global styles */
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #333;
+    color: white;
+}
+
+.navbar .logo {
+    height: 50px;
+}
+
+.links-container {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.link-items {
+    margin-right: 20px;
+}
+
+.link-items a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.nav-extras {
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    position: relative;
+    margin-right: 20px;
+}
+
+.search-box {
+    padding: 8px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-btn {
+    position: absolute;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart {
+    color: white;
+    font-size: 24px;
+    margin-left: auto;
+    text-decoration: none;
+}
+
+/* Restaurant Details */
+.restaurant-details {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.restaurant-details img {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.restaurant-details h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.restaurant-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.restaurant-details .rating {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #ffcc00;
+}
+
+.rating i {
+    margin-left: 5px;
+}
+
+/* Cards */
+.cardDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.card {
+    width: 250px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.card-content p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-to-cart {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.buy {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .links-container {
+        margin-top: 10px;
+    }
+
+    .cart {
+        margin-top: 10px;
+    }
+
+    .card {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html"> <img src="img/logo.png" class="logo" alt=""> </a> 
+        <ul class="links-container">
+            <li class="link-items"><a href="index.html" class="links">Menu</a></li>
+            <li class="link-items"><a href="order.html" class="links">Order</a></li>
+            <li class="link-items"><a href="#restaurant" class="links">Restaurants</a></li>
+            <li class="link-items"><a href="Track.html" class="links">Track Order</a></li>
+            <li class="link-items"><a href="signin.html" class="links">SignIn</a></li>
+        </ul>
+        <div class="nav-extras">
+            <div class="search">
+                <input type="text" class="search-box" id="search-box" placeholder="Search Restaurants, Cuisine...">
+                <button class="search-btn" onclick="searchFunction()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </nav>
+
+    <!-- Restaurant Details -->
+    <div class="restaurant-details">
+        <h3 id="details-name"></h3>
+        <img id="details-img" src="" alt="">
+        <p id="details-menu"></p>
+        <p id="details-place"></p>
+        <div class="rating" id="details-rating"></div>
+    </div>
+
+    <!-- Container for Cards -->
+    <div class="cardDiv" id="card-container">
+        <!-- Cards will be dynamically added here -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>
+
+    // Data for cards (you can fetch this dynamically from an API or elsewhere)
+    const cardsData = [
+    { 
+        name: 'Burger1', 
+        description: 'Classic beef burger with lettuce, tomato, and mayonnaise.', 
+        rate: 150, 
+        image: './Img/burger1.jpeg' 
+    },
+    { 
+        name: 'Crispy', 
+        description: 'Crispy fried chicken wings served with a side of dipping sauce.', 
+        rate: 180, 
+        image: './Img/crispy.jpeg' 
+    },
+    { 
+        name: 'tasty-buger', 
+        description: 'Juicy beef patty topped with cheese, lettuce, and special sauce on a sesame seed bun.', 
+        rate: 170, 
+        image: './Img/tasty-burger-isolated-white-background-fresh-hamburger-fastfood-with-beef-cheese.jpg' 
+    },
+    { 
+        name: 'Wings', 
+        description: 'Spicy buffalo chicken wings served with celery sticks and blue cheese dressing.', 
+        rate: 190, 
+        image: './Img/wings.jpeg' 
+    },
+    { 
+        name: 'Croissant', 
+        description: 'Freshly baked buttery croissant, perfect for breakfast or a snack.', 
+        rate: 120, 
+        image: './Img/croissant.jpeg' 
+    },
+    { 
+        name: 'Simit', 
+        description: 'Traditional Turkish sesame bread, ideal for a quick and satisfying bite.', 
+        rate: 90, 
+        image: './Img/simit.jpeg' 
+    },
+    { 
+        name: 'PideBread', 
+        description: 'Flatbread with a soft interior and crusty exterior, perfect for wrapping or dipping.', 
+        rate: 100, 
+        image: './Img/pideBread.jpeg' 
+    },
+    { 
+        name: 'Pide', 
+        description: 'Turkish boat-shaped pizza with toppings like cheese, meat, and vegetables.', 
+        rate: 250, 
+        image: './Img/pide.jpeg' 
+    },
+    { 
+        name: 'Iamacun', 
+        description: 'Turkish flatbread topped with ground meat, vegetables, and spices, baked to perfection.', 
+        rate: 180, 
+        image: './Img/lamacun.jpeg' 
+    },
+    { 
+        name: 'Milanese', 
+        description: 'Breaded and fried veal cutlet served with a side of salad or potatoes.', 
+        rate: 280, 
+        image: './Img/millanese.jpeg' 
+    },
+    { 
+        name: 'Fanta', 
+        description: 'Refreshing orange-flavored carbonated soft drink.', 
+        rate: 50, 
+        image: './Img/fanta.jpeg' 
+    },
+    { 
+        name: 'Coke', 
+        description: 'Classic cola-flavored carbonated soft drink.', 
+        rate: 50, 
+        image: './Img/coke.jpeg' 
+    },
+    { 
+        name: 'Sprite', 
+        description: 'Refreshing lemon-lime flavored carbonated soft drink.', 
+        rate: 50, 
+        image: './Img/sprit.jpeg' 
+    }
+];
+
+
+// Function to create a card
+function createCard(name, description, rate, imageSrc) {
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
+
+    const cardImage = document.createElement('img');
+    cardImage.src = imageSrc;
+    cardImage.alt = name;
+    cardImage.classList.add('card-image');
+
+    const cardContent = document.createElement('div');
+    cardContent.classList.add('card-content');
+
+    const title = document.createElement('h3');
+    title.textContent = name;
+
+    const descParagraph = document.createElement('p');
+    descParagraph.textContent = description;
+
+    const rateParagraph = document.createElement('p');
+    rateParagraph.textContent = `Rate: ${rate}`;
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
+
+    const addToCartButton = document.createElement('button');
+    addToCartButton.classList.add('button', 'add-to-cart');
+    addToCartButton.textContent = 'Add to Cart';
+    addToCartButton.addEventListener('click', function() {
+        addToCart(name, rate, imageSrc);
+    });
+
+    const buyButton = document.createElement('button');
+    buyButton.classList.add('button', 'buy');
+    buyButton.textContent = 'Buy';
+    buyButton.addEventListener('click', function() {
+        buy(name, rate, imageSrc);
+    });
+
+    buttonContainer.appendChild(addToCartButton);
+    buttonContainer.appendChild(buyButton);
+
+    cardContent.appendChild(title);
+    cardContent.appendChild(descParagraph);
+    cardContent.appendChild(rateParagraph);
+    cardContent.appendChild(buttonContainer);
+
+    cardDiv.appendChild(cardImage);
+    cardDiv.appendChild(cardContent);
+
+    return cardDiv;
+}
+
+// Function to initialize the page with restaurant details and cards
+function initializePage() {
+    // Extract restaurant details from query parameters (mocked here)
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const image = urlParams.get('image');
+    const menu = urlParams.get('menu');
+    const place = urlParams.get('place');
+    const rating = urlParams.get('rating');
+
+    // Update restaurant details section
+    document.getElementById('details-name').textContent = name;
+    document.getElementById('details-img').src = image;
+    document.getElementById('details-menu').textContent = 'Menu: ' + menu;
+    document.getElementById('details-place').textContent = 'Location: ' + place;
+    document.getElementById('details-rating').innerHTML = 'Rating: ' + rating + ' <i class="fa-solid fa-star"></i>';
+
+    // Create cards dynamically
+    const cardContainer = document.getElementById('card-container');
+    cardsData.forEach(cardData => {
+        const { name, description, rate, image } = cardData;
+        const card = createCard(name, description, rate, image);
+        cardContainer.appendChild(card);
+    });
+}
+
+// Function to add item to cart (mocked here)
+function addToCart(itemName, itemRate, src) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const newItem = { itemName, itemRate, src };
+    cart.push(newItem);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${itemName} has been added to your cart!`);
+}
+
+// Function to simulate buying (dummy function)
+function buy(itemName, itemRate, src) {
+    // You can implement actual buying logic here, e.g., redirect to payment page
+    window.location.href = 'payment.html';
+}
+
+// Function for search functionality (mocked here)
+function searchFunction() {
+    const searchInput = document.getElementById('search-box').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        if (title.includes(searchInput) || description.includes(searchInput)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Initialize the page
+initializePage();
+
+</script>
+</html>
